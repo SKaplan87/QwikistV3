@@ -1,0 +1,3 @@
+<% @agreements.each do |agreement| %>
+  <a href="/agreements/<%=agreement["id"]%>"><%= agreement.client["name"] %><br></a>
+<% end %>
