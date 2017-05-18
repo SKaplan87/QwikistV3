@@ -1,0 +1,78 @@
+<h1 style="text-align:center"><%= @agreement.client["name"] %> </h1>
+<div class="row">
+<div class="col s5">
+<h5><%= @agreement.client["email"] %> </h5>
+<h5><%= @agreement.client["address"] %> </h5>
+<hr>
+<h3> Workouts </h3>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Gym</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @workouts.each do |workout| %>
+      <tr>
+        <td><%=workout["id"]%></td>
+        <td><%= workout["date"] %></td>
+        <td><%= workout["time"] %></td>
+        <td><%=workout.gym["name"]%></td>
+        <td><%= link_to 'Delete', workout, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<h5> Add a Workout </h5>
+  <form action="/workouts" method="POST">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :agreement_id, value = @agreement.id %>
+    <label> Date: </label><input type="date" name="date">
+    <label> Time: </label><input type="time" name="time">
+    <select name="gym_id" material-select required>
+      <% @gyms.each do |gym| %>
+        <option value="<%= gym["id"]%>"><%=gym["name"]%></option>
+      <% end %>
+     </select>
+    <button type="submit">Submit</button><br>
+  </form>
+</div>
+<div class="col s7">
+<h5>$<%= @agreement["fee"] %>/workout</h5>
+<h5>$<%= @revenue %> Total Revenue</h5>
+<hr>
+<h3> Notes </h3>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Note</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @notes.each do |note| %>
+      <tr>
+        <td><%= note["date"] %></td>
+        <td><%= note["content"] %></td>
+        <td><%= link_to 'Delete Note', note, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <form action="/notes" method="POST">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :agreement_id, value = @agreement.id %>
+    <h5>Add a Note</h5><br><input name="content">
+    <button type="submit">Submit</button><br>
+  </form>
+</div>
+</div>
+
+
+

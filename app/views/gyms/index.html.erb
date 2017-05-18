@@ -1,0 +1,22 @@
+<a href='/gyms/new'>Add a New Gym</a><br><br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Bio</th>
+      <th>Fee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @gyms.each do |gym| %>
+      <tr>
+        <td><a href="/gyms/<%=gym["id"]%>"><%= gym["name"] %><br></a></td>
+        <td><%= gym["address"] %></td>
+        <td><%= gym["bio"] %></td>
+        <td><%= gym["fee"]%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

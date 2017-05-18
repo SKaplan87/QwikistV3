@@ -1,0 +1,16 @@
+Edit Your Workout:
+
+<%= @workout.agreement.client["name"] %><br>
+
+  <form action="/workouts" method="PATCH">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <label> Date: </label><input type="date" name="date">
+    <label> Time: </label><input type="time" name="time">
+    <label> Gym: </label>
+    <select name="gym_id" material-select required>
+      <% @gyms.each do |gym| %>
+        <option value="<%= gym["id"]%>"><%=gym["name"]%></option>
+      <% end %>
+     </select>
+    <button type="submit">Submit</button><br>
+  </form>

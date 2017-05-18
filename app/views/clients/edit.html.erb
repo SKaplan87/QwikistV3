@@ -1,0 +1,10 @@
+Edit Your Client:
+
+<%= form_for @client, :method => :PUT do |c| %>
+
+ Name: <%= text_field_tag :name, @client.name %> <br>
+ Address: <%= text_field_tag :address, @client.address %> <br>
+ Email: <%= text_field_tag :email, @client.email %> <br>
+ Image: <%= text_field_tag :img, @client.img %> <br>
+    <%= c.submit %>
+<% end %>

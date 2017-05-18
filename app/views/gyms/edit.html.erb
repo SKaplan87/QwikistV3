@@ -1,0 +1,10 @@
+Edit Your Gym:
+
+<%= form_for @gym, :method => :PUT do |c| %>
+
+ Name: <%= text_field_tag :name, @gym.name %> <br>
+ Address: <%= text_field_tag :address, @gym.address %> <br>
+ Bio: <%= text_field_tag :bio, @gym.bio %> <br>
+ Fee: <%= text_field_tag :fee, @gym.fee %> <br>
+    <%= c.submit %>
+<% end %>

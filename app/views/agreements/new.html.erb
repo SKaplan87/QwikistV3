@@ -1,0 +1,18 @@
+<h4>Add a New Client</h4>
+
+<div class="input-field">
+<form action ="/agreements" method="POST">
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+  <div class="input-field col s12">
+      Client:
+     <select name="client" material-select required>
+      <% @clients.each do |client| %>
+        <option value="<%= client["id"]%>"><%=client["name"]%></option>
+      <% end %>
+     </select>
+   </div>
+ Fee: <input name="fee" required><br>
+ <button type='submit'>Submit</button>
+</form>
+</div>

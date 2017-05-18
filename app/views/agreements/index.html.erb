@@ -1,3 +1,22 @@
-<% @agreements.each do |agreement| %>
-  <a href="/agreements/<%=agreement["id"]%>"><%= agreement.client["name"] %><br></a>
-<% end %>
+<a href='/agreements/new'>Add a New Agreement</a><br><br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Fee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @agreements.each do |agreement| %>
+      <tr>
+        <td><a href="/agreements/<%=agreement["id"]%>"><%= agreement.client["name"] %></td>
+        <td><%= agreement["fee"] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+

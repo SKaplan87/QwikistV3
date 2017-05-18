@@ -9,6 +9,10 @@ class NotesController < ApplicationController
   end
 
   def create
+    Note.create(agreement_id: params[:agreement_id],
+              date: Date.today,
+              content: params[:content])
+    redirect_to (:back)
   end
 
   def edit
@@ -18,5 +22,7 @@ class NotesController < ApplicationController
   end
 
   def destroy
+    Note.destroy(params[:id])
+    redirect_to (:back)
   end
 end

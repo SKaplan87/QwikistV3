@@ -1,0 +1,23 @@
+Total Revenu: $<%= @revenue %><br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Gym</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @workouts.each do |workout| %>
+      <tr>
+        <td><%= workout.agreement.client["name"] %></td>
+        <td><%= workout["date"] %></td>
+        <td><%= workout["time"] %></td>
+        <td><%= workout.gym["name"]%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
