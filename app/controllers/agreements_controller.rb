@@ -1,14 +1,38 @@
 class AgreementsController < ApplicationController
+
+  before_action :authenticate_user!
+
   def index
     @agreements = Agreement.where(:user_id => current_user[:id]).where(:active => true)
+    @workouts = Workout.where(:user_id => current_user[:id])
+    @count = Workout.where(:user_id => current_user[:id]).count
+    revenue = 0
+    fees = 0
+    @workouts.each do |wk|
+      rev = wk.agreement[:fee]
+      revenue = revenue + rev
+      fee = wk.gym[:fee]
+      fees = fees + fee
+    end
+    @revenue = revenue
+    @profit = @revenue-fees
+
   end
 
   def show
     @agreement = Agreement.find(params[:id])
-    @workouts = Workout.where(:agreement_id => params[:id] )
-    @notes = Note.where(:agreement_id => params[:id] )
+    @workouts = Workout.where(:agreement_id => params[:id] ).order("date")
+    @notes = Note.where(:agreement_id => params[:id] ).order("date")
     @gyms = Gym.where(:user_id => current_user[:id])
-    @revenue = (Workout.where(:agreement_id => params[:id] ).count)*@agreement[:fee]
+    @count = Workout.where(:agreement_id => params[:id] ).count
+    @revenue = @count*@agreement[:fee]
+    fees = 0
+    @workouts.each do |wk|
+      fee = wk.gym[:fee]
+      fees = fees + fee
+    end
+    @profit = @revenue-fees
+
   end
 
   def new
@@ -26,6 +50,9 @@ class AgreementsController < ApplicationController
   end
 
   def update
+    @agreement=Agreement.find(params[:id])
+    @agreement.update(playlist: params[:playlist])
+    redirect_to (:back)
   end
 
   def destroy

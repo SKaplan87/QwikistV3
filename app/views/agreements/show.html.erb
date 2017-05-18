@@ -1,8 +1,12 @@
-<h1 style="text-align:center"><%= @agreement.client["name"] %> </h1>
+
+<div id="agreement-title" >
+  <h1><%= @agreement.client["name"] %> </h1>
+</div>
 <div class="row">
 <div class="col s5">
 <h5><%= @agreement.client["email"] %> </h5>
 <h5><%= @agreement.client["address"] %> </h5>
+<h5>$<%= @agreement["fee"] %>/workout</h5>
 <hr>
 <h3> Workouts </h3>
 <table>
@@ -19,8 +23,8 @@
     <% @workouts.each do |workout| %>
       <tr>
         <td><%=workout["id"]%></td>
-        <td><%= workout["date"] %></td>
-        <td><%= workout["time"] %></td>
+        <td><%= workout["date"].to_formatted_s(:long) %></td>
+        <td><%= workout["time"].to_formatted_s(:time) %></td>
         <td><%=workout.gym["name"]%></td>
         <td><%= link_to 'Delete', workout, method: :delete %></td>
       </tr>
@@ -42,8 +46,9 @@
   </form>
 </div>
 <div class="col s7">
-<h5>$<%= @agreement["fee"] %>/workout</h5>
+<h5><%= @count %> Total Sessions</h5>
 <h5>$<%= @revenue %> Total Revenue</h5>
+<h5>$<%= @profit %> Total Profit</h5>
 <hr>
 <h3> Notes </h3>
 <table>
@@ -71,6 +76,20 @@
     <h5>Add a Note</h5><br><input name="content">
     <button type="submit">Submit</button><br>
   </form>
+  <div class="row">
+  <div class="col s6">
+  <iframe src="<%=@agreement["playlist"]%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+  </div>
+  <div class="col s6">
+  Edit Your Playlist:
+
+<%= form_for @agreement, :method => :PUT do |c| %>
+
+ Playlist: <%= text_field_tag :playlist, @agreement.playlist %> <br>
+    <%= c.submit "New Playlist" %>
+<% end %>
+</div>
+</div>
 </div>
 </div>
 

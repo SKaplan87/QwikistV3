@@ -14,8 +14,8 @@ Total Revenu: $<%= @revenue %><br>
     <% @workouts.each do |workout| %>
       <tr>
         <td><%= workout.agreement.client["name"] %></td>
-        <td><%= workout["date"] %></td>
-        <td><%= workout["time"] %></td>
+        <td><%= workout["date"].to_formatted_s(:long) %></td>
+        <td><%= workout["time"].to_formatted_s(:time) %></td>
         <td><%= workout.gym["name"]%></td>
       </tr>
     <% end %>

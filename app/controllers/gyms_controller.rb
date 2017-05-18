@@ -5,7 +5,15 @@ class GymsController < ApplicationController
 
   def show
     @gym = Gym.find(params[:id])
-    @workouts = Workout.where(:gym_id => params[:id] )
+    @workouts = Workout.where(:gym_id => params[:id] ).order("date")
+    @count = Workout.where(:gym_id => params[:id] ).count
+    revenue=0
+    @workouts.each do |wk|
+      rev = wk.agreement[:fee]
+      revenue = revenue + rev
+    end
+    @revenue=revenue
+    @profit = @revenue-(@count*@gym[:fee])
   end
 
   def new

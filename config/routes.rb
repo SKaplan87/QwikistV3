@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :agreements
   resources :workouts
   resources :notes
+
+root to: 'agreements#index'
 end

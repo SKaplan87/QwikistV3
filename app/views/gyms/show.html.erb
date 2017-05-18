@@ -1,8 +1,17 @@
-<%= @gym["name"] %> <br>
-<%= @gym["address"] %> <br>
-<%= @gym["bio"] %> <br>
-<%= @gym["fee"] %> <br>
 
+<h1><%= @gym["name"] %> </h1>
+<div class="row">
+<div class="col s6">
+<h4><%= @gym["address"] %> </h4>
+<h4><%= @gym["bio"] %> </h4>
+<h4>$<%= @gym["fee"] %> session fee</h4>
+</div>
+<div class="col s6">
+<h4><%= @count %> Total Sessions</h4>
+<h4>$<%= @revenue%> Total Revenue</h4>
+<h4>$<%= @profit%> Total Profit</h4>
+</div>
+</div>
 <table>
   <thead>
     <tr>
@@ -14,8 +23,8 @@
   <tbody>
     <% @workouts.each do |workout| %>
       <tr>
-        <td><%= workout["date"] %></td>
-        <td><%= workout["time"] %></td>
+        <td><%= workout["date"].to_formatted_s(:long) %></td>
+        <td><%= workout["time"].to_formatted_s(:time) %></td>
         <td><%=workout.agreement.client["name"]%></td>
       </tr>
     <% end %>

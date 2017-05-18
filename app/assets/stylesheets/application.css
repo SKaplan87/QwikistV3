@@ -14,3 +14,14 @@
  *= require_self
  */
 @import "materialize";
+
+#body-container{
+  margin:3%;
+  padding:3%;
+}
+
+#agreement-title{
+  padding-right:10%;
+  text-align:center;
+}
+

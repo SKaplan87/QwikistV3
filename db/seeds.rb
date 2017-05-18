@@ -15,7 +15,7 @@ Client.create(name:"Marc",address:"260 W 54th St, New York, NY",email:"Marc@emai
 Client.create(name:"Jim",address:"260 W 54th St, New York, NY",email:"Jim@email.com",img:"",user_id:1)
 Client.create(name:"Henry",address:"241 5th Ave, New York, NY",email:"Henry@email.com",img:"",user_id:1)
 Client.create(name:"Adam",address:"555 W. 23rd St, New York, NY",email:"Adam@email.com",img:"",user_id:1)
-Agreement.create(user_id:1,client_id:1,fee:75)
+Agreement.create(user_id:1,client_id:1,fee:75,playlist:"https://open.spotify.com/embed?uri=spotify:user:spotify:playlist:37i9dQZF1DWVu0D7Y8cYcs")
 Agreement.create(user_id:1,client_id:2,fee:100)
 Agreement.create(user_id:1,client_id:3,fee:100)
 Agreement.create(user_id:1,client_id:4,fee:120)

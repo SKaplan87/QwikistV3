@@ -10,54 +10,38 @@
 
   </head>
     <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
+    <div class="nav-wrapper red">
+      <a href="/" class="brand-logo center">Qwikist</a>
+      <% if user_signed_in? %>
+  Logged in as <strong><%= current_user.name %></strong>.
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
+  <li><a href='/gyms'>Gyms </a></li>
+  <li><a href='/agreements'>Agreements </a></li>
+  <li><a href='/clients'>Clients </a></li>
+  <li><a href='/workouts'>Workouts </a></li>
+  <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> </li>
+  <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+<% else %>
+  <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> </li>
+  <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+<% end %>
       </ul>
     </div>
   </nav>
 
-<p class="navbar-text pull-right">
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.name %></strong>.
-  <a href='/gyms'>Gyms </a>|
-  <a href='/agreements'>Agreements </a>|
-  <a href='/clients'>Clients </a>|
-  <a href='/workouts'>Workouts </a>|
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-<% end %>
-</p>
 
+  <body class="grey darken-2">
+    <div id="body-container" class="grey lighten-4">
+      <%= yield %>
+    </div>
+            <footer class="page-footer red">
 
-
-
-
-
-
-
-<!-- <p class="navbar-text pull-right">
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.name %></strong>.
-  <a href='/gyms'>Gyms </a>|
-  <a href='/agreements'>Agreements </a>|
-  <a href='/clients'>Clients </a>|
-  <a href='/workouts'>Workouts </a>|
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-<% end %>
-</p> -->
-  <body>
-    <%= yield %>
+          <div class="footer-copyright red">
+            <div class="container center">
+            © 2017 SIK
+            </div>
+          </div>
+        </footer>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 </html>
