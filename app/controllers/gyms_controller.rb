@@ -1,6 +1,7 @@
 class GymsController < ApplicationController
   def index
     @gyms = Gym.where(:user_id => current_user[:id]).where(:active => true)
+
   end
 
   def show

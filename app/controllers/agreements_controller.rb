@@ -16,7 +16,17 @@ class AgreementsController < ApplicationController
     end
     @revenue = revenue
     @profit = @revenue-fees
-
+    if @profit < 9325
+      @estimatedTaxes = @profit*0.1
+    elsif @profit < 37950
+      @estimatedTaxes = 932.50 + @profit*0.15
+    elsif @profit < 37950
+      @estimatedTaxes = 932.50 + @profit*0.15
+    elsif @profit < 91900
+      @estimatedTaxes = 5226.25 + @profit*0.25
+    elsif @profit < 191650
+      @estimatedTaxes = 18713.75 + @profit*0.28
+    end
   end
 
   def show
