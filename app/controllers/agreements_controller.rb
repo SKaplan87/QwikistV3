@@ -5,7 +5,8 @@ class AgreementsController < ApplicationController
   def index
     @agreements = Agreement.where(:user_id => current_user[:id]).where(:active => true)
     @workouts = Workout.where(:user_id => current_user[:id])
-    @count = Workout.where(:user_id => current_user[:id]).count
+    @allCount = Workout.where(:user_id => current_user[:id]).count
+    @YTDCount = @allCount.where(:date)
     revenue = 0
     fees = 0
     @workouts.each do |wk|
