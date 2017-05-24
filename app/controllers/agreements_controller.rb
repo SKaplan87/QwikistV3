@@ -6,7 +6,6 @@ class AgreementsController < ApplicationController
     @agreements = Agreement.where(:user_id => current_user[:id]).where(:active => true)
     @workouts = Workout.where(:user_id => current_user[:id])
     @allCount = Workout.where(:user_id => current_user[:id]).count
-    @YTDCount = @allCount.where(:date)
     revenue = 0
     fees = 0
     @workouts.each do |wk|
